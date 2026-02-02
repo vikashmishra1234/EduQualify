@@ -1,12 +1,13 @@
 'use client';
 
 import Link from "next/link"
-import { useActionState } from "react"
+import { useActionState, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { login, AuthState } from "@/app/actions/auth"
+import { Eye, EyeOff } from "lucide-react"
 
 const initialState: AuthState = {
   message: '',
@@ -15,6 +16,7 @@ const initialState: AuthState = {
 
 export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(login, initialState);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <Card className="bg-zinc-900/60 backdrop-blur-xl border-zinc-800 shadow-2xl">
@@ -40,13 +42,30 @@ export default function LoginPage() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password" className="text-slate-300">Password</Label>
-            <Input 
-                id="password" 
-                name="password" 
-                type="password" 
-                required 
-                className="bg-zinc-950/50 border-zinc-700/50 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500/50 focus-visible:border-indigo-500 transition-all"
-            />
+            <div className="relative">
+              <Input 
+                  id="password" 
+                  name="password" 
+                  type={showPassword ? "text" : "password"} 
+                  required 
+                  className="bg-zinc-950/50 border-zinc-700/50 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500/50 focus-visible:border-indigo-500 transition-all pr-10"
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent hover:text-white text-slate-400"
+                onClick={() => setShowPassword(!showPassword)}
+                tabIndex={-1}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-4 w-4" aria-hidden="true" />
+                ) : (
+                  <Eye className="h-4 w-4" aria-hidden="true" />
+                )}
+                <span className="sr-only">{showPassword ? "Hide password" : "Show password"}</span>
+              </Button>
+            </div>
              {state?.errors?.password && <p className="text-sm text-red-400">{state.errors.password}</p>}
           </div>
 
