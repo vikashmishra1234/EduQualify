@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ EduQualify
 
-## Getting Started
+EduQualify is a premium online course eligibility and assessment platform. It allows users to browse courses, check their eligibility through timed assessments, and receive instant certification results. For administrators, it offers a robust dashboard to manage courses, view analytics, and track student performance.
 
-First, run the development server:
+![Platform Preview](public/preview.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### for Candidates
+- **Browse Courses**: Explore a catalog of professional courses with detailed eligibility criteria.
+- **Eligibility Assessments**: Take real-time, time-bound multiple-choice tests to verify skills.
+- **Instant Results**: Receive immediate feedback with a pass/fail status and score breakdown.
+- **Secure Authentication**: User registration and login flows.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### for Administrators
+- **Admin Dashboard**: A comprehensive overview of platform statistics (Total Courses, Students, Test Attempts).
+- **Course Management**: Create, edit, and delete courses with ease.
+- **Question Bank**: Manage assessment questions for each course.
+- **Analytics**: View recent student registrations and activity.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) & [Shadcn UI](https://ui.shadcn.com/)
+- **Database**: [MongoDB](https://www.mongodb.com/) (with Mongoose)
+- **Authentication**: [NextAuth.js](https://next-auth.js.org/)
+- **Emails**: Nodemailer
+- **Icons**: Lucide React
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Follow these steps to set up the project locally.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
+- Node.js 18+
+- MongoDB Database
 
-## Deploy on Vercel
+### Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/eduqualify.git
+   cd eduqualify
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up Environment Variables**
+   Create a `.env.local` file in the root directory and add the following variables:
+
+   ```env
+   # Database
+   MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/eduqualify
+
+   # Authentication (NextAuth)
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=your_super_secret_key_here
+
+   # Email Service (for results)
+   GMAIL_USER=your_email@gmail.com
+   GMAIL_PASS=your_app_password
+   ```
+
+4. **Seed Database (Optional)**
+   If you have a seeding script, run it to populate initial courses.
+   ```bash
+   npx tsx scripts/seed-questions.ts
+   ```
+
+5. **Run the Development Server**
+   ```bash
+   npm run dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 🚀 Deployment
+
+The application is optimized for deployment on Vercel.
+
+1. Push your code to a GitHub repository.
+2. Import the project into Vercel.
+3. Add the **Environment Variables** in the Vercel project settings.
+4. Deploy!
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
